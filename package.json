@@ -1,0 +1,50 @@
+{
+  "name": "brickblock-backend",
+  "version": "0.0.1",
+  "description": "A basic NodeJS backend that's hosting mock ICO offering data on MongoDB using GraphQL to interact with the data",
+  "main": "app.js",
+  "scripts": {
+    "build": "npm-run-all clean build:src build:test",
+    "build:src": "babel src -d lib/src --copy-files",
+    "build:test": "babel test -d lib/test",
+    "clean": "npm-run-all clean:src clean:test",
+    "clean:src": "rimraf lib/src",
+    "clean:test": "rimraf lib/test",
+    "clean:babel-cache": "rimraf node_modules/.cache/@babel",
+    "start": "npm-run-all clean:babel-cache start:nodemon",
+    "start:nodemon": "nodemon --exitcrash --exec babel-node src/app.js",
+    "serve": "node lib/src/app.js",
+    "test": "LOG_LEVEL_CONSOLE=error LOG_LEVEL_FILE=error npm-run-all build test:mocha",
+    "test:mocha": "find ./lib/test/* -name '*_test.js' | xargs mocha --require @babel/polyfill --exit -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CaelRowley/brickblock-backend"
+  },
+  "author": "Cael Rowley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CaelRowley/brickblock-backend"
+  },
+  "homepage": "https://github.com/CaelRowley/brickblock-backend#readme",
+  "dependencies": {
+    "app-root-path": "^2.1.0",
+    "express": "^4.16.4",
+    "winston": "^3.1.0",
+    "winston-daily-rotate-file": "^3.5.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.2.3",
+    "babel-plugin-inline-dotenv": "^1.2.0",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.9",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^2.6.2",
+    "supertest": "^3.3.0"
+  }
+}
