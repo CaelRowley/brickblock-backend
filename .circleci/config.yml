@@ -50,12 +50,23 @@ jobs:
       - heroku/install
       - checkout
       - setup_remote_docker
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run:
+          name: Installing dependencies
+          command: npm install
       - run:
           name: Build the app
           command: npm run build
       - run:
           name: Install Heroku CLI
           command: sudo curl https://cli-assets.heroku.com/install.sh | sh 
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: Login container
           command: heroku container:login
@@ -74,12 +85,23 @@ jobs:
       - heroku/install
       - checkout
       - setup_remote_docker
+     - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run:
+          name: Installing dependencies
+          command: npm install
       - run:
           name: Build the app
           command: npm run build
       - run:
           name: Install Heroku CLI
           command: sudo curl https://cli-assets.heroku.com/install.sh | sh 
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }} 
       - run:
           name: Login container
           command: heroku container:login
