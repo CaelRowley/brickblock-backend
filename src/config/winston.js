@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+/* @flow */
 import winston from 'winston';
 import appRoot from 'app-root-path';
 import 'winston-daily-rotate-file';
