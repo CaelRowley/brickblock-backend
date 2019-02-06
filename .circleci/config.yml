@@ -1,0 +1,88 @@
+version: 2.1
+
+orbs:
+  heroku: circleci/heroku@0.0.4
+
+workflows:
+  version: 2.1
+  heroku_deploy:
+    jobs:
+      - build
+      - deployToDevelopment:
+          requires:
+            - build
+          filters:
+            branches:
+              only: develop
+      - deployToProduction:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10.15
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run:
+          name: Installing dependencies
+          command: npm install
+      - run:
+          name: Build the app
+          command: npm run build
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: Run tests
+          command: npm test
+
+  deployToDevelopment:
+    docker:
+      - image: circleci/node:10.15
+    executor: heroku/default
+    steps:
+      - heroku/install
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install Heroku CLI
+          command: sudo curl https://cli-assets.heroku.com/install.sh | sh 
+      - run:
+          name: Login container
+          command: heroku container:login
+      - run:
+          name: Push the app to Heroku
+          command: heroku container:push web -a $HEROKU_APP_NAME_DEV
+      - run:
+          name: Release the Heroku app
+          command: heroku container:release web -a $HEROKU_APP_NAME_DEV
+
+  deployToProduction:
+    docker:
+      - image: circleci/node:10.15
+    executor: heroku/default
+    steps:
+      - heroku/install
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install Heroku CLI
+          command: sudo curl https://cli-assets.heroku.com/install.sh | sh 
+      - run:
+          name: Login container
+          command: heroku container:login
+      - run:
+          name: Push the app to Heroku
+          command: heroku container:push web -a $HEROKU_APP_NAME
+      - run:
+          name: Release the Heroku app
+          command: heroku container:release web -a $HEROKU_APP_NAME
