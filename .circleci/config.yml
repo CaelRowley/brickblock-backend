@@ -13,7 +13,7 @@ workflows:
             - build
           filters:
             branches:
-              only: develop
+              only: development
       - deployToProduction:
           requires:
             - build
