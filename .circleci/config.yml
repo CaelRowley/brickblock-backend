@@ -34,9 +34,6 @@ jobs:
       - run:
           name: Installing dependencies
           command: npm install
-      - run:
-          name: Build the app
-          command: npm run build
       - save_cache:
           paths:
             - node_modules
@@ -53,6 +50,9 @@ jobs:
       - heroku/install
       - checkout
       - setup_remote_docker
+      - run:
+          name: Build the app
+          command: npm run build
       - run:
           name: Install Heroku CLI
           command: sudo curl https://cli-assets.heroku.com/install.sh | sh 
@@ -74,6 +74,9 @@ jobs:
       - heroku/install
       - checkout
       - setup_remote_docker
+      - run:
+          name: Build the app
+          command: npm run build
       - run:
           name: Install Heroku CLI
           command: sudo curl https://cli-assets.heroku.com/install.sh | sh 
