@@ -1,3 +1,3 @@
-const healthcheck = () => ('Health check!');
+const healthcheck = () => 'Health check!';
 
 export default healthcheck;

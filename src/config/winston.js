@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import winston from 'winston';
 import appRoot from 'app-root-path';
 import 'winston-daily-rotate-file';
@@ -11,22 +12,28 @@ const sentryConfig = {
 const { format } = winston;
 
 const printFormat = format.printf((info) => {
-  const {
-    timestamp, level, message, ...args
-  } = info;
-  return `${timestamp} [${level}]: ${message} ${Object.keys(args).length ? JSON.stringify(args, null, 2) : ''}`;
+  const { timestamp, level, message, ...args } = info;
+  return `${timestamp} [${level}]: ${message} ${
+    Object.keys(args).length ? JSON.stringify(args, null, 2) : ''
+  }`;
 });
 
 const enumerateErrorFormat = format((info) => {
   if (info.message instanceof Error) {
-    info.message = Object.assign({ // eslint-disable-line no-param-reassign
-      message: `${info.message.message}\n${info.message.stack}`,
-    }, info.message);
+    info.message = Object.assign(
+      {
+        message: `${info.message.message}\n${info.message.stack}`,
+      },
+      info.message,
+    );
   }
   if (info instanceof Error) {
-    return Object.assign({
-      message: `${info.message}\n${info.stack}`,
-    }, info);
+    return Object.assign(
+      {
+        message: `${info.message}\n${info.stack}`,
+      },
+      info,
+    );
   }
   return info;
 });
@@ -44,13 +51,10 @@ const logger = winston.createLogger({
     new Sentry(sentryConfig),
     new winston.transports.Console({
       level: process.env.LOG_LEVEL_CONSOLE,
-      format: format.combine(
-        format.colorize(),
-        printFormat,
-      ),
+      format: format.combine(format.colorize(), printFormat),
       handleExceptions: true,
     }),
-    new (winston.transports.DailyRotateFile)({
+    new winston.transports.DailyRotateFile({
       level: process.env.LOG_LEVEL_FILE,
       dirname: `${appRoot}/logs/`,
       filename: '%DATE%-brickblock-backend.log',
