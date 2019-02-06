@@ -1,3 +1,4 @@
+/* @flow weak */
 import healthcheckRouter from './healthcheck/router';
 
 const addRouters = (app) => {
