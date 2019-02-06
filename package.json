@@ -5,17 +5,17 @@
   "main": "app.js",
   "scripts": {
     "build": "npm-run-all clean build:src build:test",
-    "build:src": "babel src -d lib/src --copy-files",
-    "build:test": "babel test -d lib/test",
+    "build:src": "babel src -d build/src --copy-files",
+    "build:test": "babel test -d build/test",
     "clean": "npm-run-all clean:src clean:test",
-    "clean:src": "rimraf lib/src",
-    "clean:test": "rimraf lib/test",
+    "clean:src": "rimraf build/src",
+    "clean:test": "rimraf build/test",
     "clean:babel-cache": "rimraf node_modules/.cache/@babel",
     "start": "npm-run-all clean:babel-cache start:nodemon",
     "start:nodemon": "nodemon --exitcrash --exec babel-node src/app.js",
-    "serve": "node lib/src/app.js",
+    "serve": "node build/src/app.js",
     "test": "LOG_LEVEL_CONSOLE=error LOG_LEVEL_FILE=error npm-run-all build test:mocha",
-    "test:mocha": "find ./lib/test/* -name '*_test.js' | xargs mocha --require @babel/polyfill --exit -R spec"
+    "test:mocha": "find ./build/test/* -name '*_test.js' | xargs mocha --require @babel/polyfill --exit -R spec"
   },
   "repository": {
     "type": "git",
