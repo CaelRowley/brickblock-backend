@@ -1,6 +1,12 @@
 import winston from 'winston';
 import appRoot from 'app-root-path';
 import 'winston-daily-rotate-file';
+import Sentry from 'winston-raven-sentry';
+
+const sentryConfig = {
+  dsn: process.env.SENTRY_DNS,
+  level: process.env.SENTRY_LOG_LEVEL,
+};
 
 const { format } = winston;
 
@@ -35,6 +41,7 @@ const logger = winston.createLogger({
     }),
   ),
   transports: [
+    new Sentry(sentryConfig),
     new winston.transports.Console({
       level: process.env.LOG_LEVEL_CONSOLE,
       format: format.combine(
