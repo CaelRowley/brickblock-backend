@@ -1,7 +1,18 @@
 {
     "extends": "airbnb-base",
-        "env": {
+    "env": {
         "node": true,
-            "es6": true
+        "es6": true
+    },
+    "rules": {
+        "object-curly-newline": [
+            "error",
+            {
+                "ObjectExpression": "always",
+                "ObjectPattern": {
+                    "multiline": true
+                }
+            }
+        ]
     }
 }
