@@ -1,4 +1,10 @@
 /* @flow */
+import { GraphQLDateTime } from 'graphql-iso-date';
+
 import icoResolvers from './ico';
 
-export default [icoResolvers];
+const customScalarResolver = {
+  Date: GraphQLDateTime,
+};
+
+export default [customScalarResolver, icoResolvers];

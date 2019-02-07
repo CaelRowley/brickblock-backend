@@ -6,8 +6,9 @@ export default gql`
     _id: String!
     address: String!
     currency: String!
-    value(text: Int): Int!
+    value: Int!
     txid: String!
+    date: Date
   }
 
   extend type Query {
@@ -21,6 +22,7 @@ export default gql`
       currency: String!
       value: Int!
       txid: String!
+      date: Date!
     ): ICO!
     deleteICO(_id: String!): Boolean!
   }
