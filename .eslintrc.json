@@ -13,6 +13,7 @@
                     "multiline": true
                 }
             }
-        ]
+        ],
+        "new-cap": 0
     }
 }
