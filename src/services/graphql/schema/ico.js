@@ -6,13 +6,13 @@ export default gql`
     _id: String!
     address: String!
     currency: String!
-    value: Int!
+    value: Long!
     txid: String!
     date: Date
   }
 
   extend type Query {
-    ICOs(limit: Int): [ICO!]!
+    ICOs(cursor: Int, limit: Int): [ICO!]!
     ICO(_id: String!): ICO!
   }
 
@@ -20,7 +20,7 @@ export default gql`
     createICO(
       address: String!
       currency: String!
-      value: Int!
+      value: Long!
       txid: String!
       date: Date!
     ): ICO!

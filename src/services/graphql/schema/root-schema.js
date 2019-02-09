@@ -5,6 +5,7 @@ import icoSchema from './ico';
 
 const baseSchema = gql`
   scalar Date
+  scalar Long
 
   type Query {
     _: Boolean
