@@ -2,8 +2,9 @@
 import { gql } from 'apollo-server-express';
 
 import icoSchema from './ico';
+import exchangeRateSchema from './exchange-rate';
 
-const baseSchema = gql`
+const rootSchema = gql`
   scalar Date
   scalar Long
 
@@ -20,4 +21,4 @@ const baseSchema = gql`
   }
 `;
 
-export default [baseSchema, icoSchema];
+export default [rootSchema, icoSchema, exchangeRateSchema];

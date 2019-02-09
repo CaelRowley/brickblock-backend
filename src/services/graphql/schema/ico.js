@@ -24,6 +24,7 @@ export default gql`
       txid: String!
       date: Date!
     ): ICO!
+
     deleteICO(_id: String!): Boolean!
   }
 `;

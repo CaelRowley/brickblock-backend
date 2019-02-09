@@ -2,9 +2,10 @@
 
 const port = process.env.PORT || 8000;
 
-const connectDb = () => mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-});
+const connectDb = () =>
+  mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+  });
 
 connectDb().then(async () => {
   createICOs(1000);
@@ -27,12 +28,15 @@ const createICOs = async (amount) => {
   }
 };
 
-const randomDate = (start, end) => new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+const randomDate = (start, end) =>
+  new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 
 const randomChars = (length) => {
   let text = '';
-  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  for (let i = 0; i < length; i++) text += possible.charAt(Math.floor(Math.random() * possible.length));
+  const possible =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  for (let i = 0; i < length; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
   return text;
 };
 
