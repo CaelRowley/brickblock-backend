@@ -6,3 +6,5 @@ export const exchangeBatchRates = async (currencies, models) => {
   });
   return exchangeRates.map(exchangeRate => exchangeRates.find(rateToFind => rateToFind === exchangeRate));
 };
+
+export default exchangeBatchRates;

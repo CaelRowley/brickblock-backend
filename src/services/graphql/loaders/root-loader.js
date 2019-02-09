@@ -1,5 +1,7 @@
 import * as exchangeRate from './exchange-rate';
 
-const loaders = { exchangeRate };
+const loaders = {
+  exchangeRate,
+};
 
 export default loaders;

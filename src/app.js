@@ -23,7 +23,9 @@ const server = new ApolloServer({
   context: async () => ({
     models,
     loaders: {
-      exchangeRate: new DataLoader(currencies => loaders.exchangeRate.exchangeBatchRates(currencies, models)),
+      exchangeRate: new DataLoader((currencies) => {
+        loaders.exchangeRate.exchangeBatchRates(currencies, models);
+      }),
     },
   }),
 });

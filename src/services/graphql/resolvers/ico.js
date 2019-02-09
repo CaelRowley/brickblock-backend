@@ -2,7 +2,7 @@
 /* eslint-disable no-underscore-dangle, no-param-reassign */
 export default {
   Query: {
-    ICOs: async (parent, { limit }, { models, loaders }) => {
+    ICOs: async (parent, { limit }, { models }) => {
       let icos;
       if (limit) {
         icos = await models.ico.find(null, null, {
