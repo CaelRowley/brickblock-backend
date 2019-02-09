@@ -1,4 +1,4 @@
-/* @flow */
+/* @flow weak */
 import '@babel/polyfill';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
