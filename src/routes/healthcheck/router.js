@@ -1,3 +1,4 @@
+/* @flow */
 import express from 'express';
 import healthcheck from '../../services/healthcheck/route-service';
 

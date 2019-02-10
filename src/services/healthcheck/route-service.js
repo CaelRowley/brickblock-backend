@@ -1,3 +1,4 @@
-const healthcheck = () => ('Health check!');
+/* @flow */
+const healthcheck = () => 'Health check!';
 
 export default healthcheck;
