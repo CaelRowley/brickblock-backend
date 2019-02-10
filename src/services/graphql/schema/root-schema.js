@@ -7,6 +7,7 @@ import exchangeRateSchema from './exchange-rate';
 const rootSchema = gql`
   scalar Date
   scalar Long
+  scalar JSON
 
   type Query {
     _: Boolean

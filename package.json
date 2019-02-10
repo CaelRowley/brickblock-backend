@@ -41,6 +41,7 @@
     "express": "^4.16.4",
     "graphql": "^14.1.1",
     "graphql-iso-date": "^3.6.1",
+    "graphql-type-json": "^0.2.1",
     "graphql-type-long": "^0.1.1",
     "mongoose": "^5.4.10",
     "path": "^0.12.7",

@@ -19,7 +19,6 @@ export default gql`
       euro: Float!
       dollar: Float!
     ): ExchangeRate!
-
     deleteExchangeRate(_id: String!): Boolean!
   }
 `;

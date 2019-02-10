@@ -88,7 +88,8 @@ export default {
           if (ico.euroValue === maxValue) {
             ico._id = ico._id.toString();
             return ico;
-          } return null;
+          }
+          return null;
         })
         .filter(ico => ico != null);
     },
@@ -120,7 +121,10 @@ export default {
         }
       }
 
-      return mostTransactions;
+      return {
+        address: mostTransactions,
+        amount: maxCount,
+      };
     },
   },
 
