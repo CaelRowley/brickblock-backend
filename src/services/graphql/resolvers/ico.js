@@ -30,7 +30,7 @@ export default {
       } else {
         icos = await models.ico.find();
       }
-      
+
       return icos.map((ico) => {
         ico._id = ico._id.toString();
         return ico;
