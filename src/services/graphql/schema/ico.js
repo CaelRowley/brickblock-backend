@@ -6,22 +6,28 @@ export default gql`
     _id: String!
     address: String!
     currency: String!
-    value(text: Int): Int!
+    value: Long!
     txid: String!
+    date: Date
   }
 
   extend type Query {
-    ICOs(limit: Int): [ICO!]!
+    ICOs(cursor: Int, limit: Int): [ICO!]!
     ICO(_id: String!): ICO!
+    averageValue(currency: String, exchange: String): Float!
+    highestValue(currency: String, exchange: String): [ICO!]!
+    mostTransactions(currency: String): JSON!
   }
 
   extend type Mutation {
     createICO(
       address: String!
       currency: String!
-      value: Int!
+      value: Long!
       txid: String!
+      date: Date!
     ): ICO!
+
     deleteICO(_id: String!): Boolean!
   }
 `;
