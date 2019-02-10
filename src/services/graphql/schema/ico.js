@@ -13,7 +13,14 @@ export default gql`
 
   extend type Query {
     ICOs(cursor: Int, limit: Int): [ICO!]!
+
     ICO(_id: String!): ICO!
+
+    averageValue(currency: String, exchange: String): Float!
+
+    highestValue(currency: String, exchange: String): [ICO!]!
+
+    mostTransactions(currency: String): String!
   }
 
   extend type Mutation {
