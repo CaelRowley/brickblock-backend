@@ -9,10 +9,19 @@ const smallUnitValue = {
 
 export default {
   Query: {
-    ICOs: async (parent, { limit }, { models }) => {
+    ICOs: async (parent, { cursor, limit }, { models }) => {
+      const cursorOptions = cursor
+        ? {
+          value: {
+            $lt: cursor,
+          },
+        }
+        : {
+        };
+
       let icos;
       if (limit) {
-        icos = await models.ico.find(null, null, {
+        icos = await models.ico.find(cursorOptions, null, {
           sort: {
             value: -1,
           },
@@ -21,6 +30,7 @@ export default {
       } else {
         icos = await models.ico.find();
       }
+
       return icos.map((ico) => {
         ico._id = ico._id.toString();
         return ico;
