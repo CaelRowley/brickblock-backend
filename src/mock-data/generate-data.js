@@ -24,7 +24,9 @@ const server = new ApolloServer({
   context: async () => ({
     models,
     loaders: {
-      exchangeRate: new DataLoader(currencies => loaders.exchangeRate.exchangeBatchRates(currencies, models)),
+      exchangeRate: new DataLoader((currencies) =>
+        loaders.exchangeRate.exchangeBatchRates(currencies, models),
+      ),
     },
   }),
 });
@@ -93,9 +95,11 @@ const createICOs = async (amount) => {
 };
 
 const randomDate = (start, end) => {
-  let ranDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+  let ranDate = new Date(
+    start.getTime() + Math.random() * (end.getTime() - start.getTime()),
+  );
   return ranDate;
-}
+};
 
 const randomChars = (length) => {
   let text = '';
@@ -108,7 +112,9 @@ const randomChars = (length) => {
 
 const randomCurrency = () => {
   const currencies = ['ETH', 'ETH', 'ETH', 'ETH', 'BTC', 'LTC', 'BTC'];
-  return currencies[Math.floor(Math.random() * Math.floor(currencies.length + 1))];
+  return currencies[
+    Math.floor(Math.random() * Math.floor(currencies.length + 1))
+  ];
 };
 
 const randomValue = (currency) => {
@@ -135,8 +141,30 @@ const randomValue = (currency) => {
 };
 
 const randomNumOfTransactions = () => {
-  const numOfTransactions = [1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  return numOfTransactions[Math.floor(Math.random() * Math.floor(numOfTransactions.length + 1))];
+  const numOfTransactions = [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+  ];
+  return numOfTransactions[
+    Math.floor(Math.random() * Math.floor(numOfTransactions.length + 1))
+  ];
 };
 
 const randomICO = (address) => {
