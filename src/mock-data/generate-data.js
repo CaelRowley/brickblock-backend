@@ -46,7 +46,7 @@ const connectDb = () =>
   });
 
 connectDb().then(async () => {
-  createICOs(1000);
+  createICOs(200);
   createExchangeRates();
   app.listen(port, () => {
     logger.debug(`Server be jammin' on http://localhost:${port}/graphql`);
@@ -112,9 +112,7 @@ const randomChars = (length) => {
 
 const randomCurrency = () => {
   const currencies = ['ETH', 'ETH', 'ETH', 'ETH', 'BTC', 'LTC', 'BTC'];
-  return currencies[
-    Math.floor(Math.random() * Math.floor(currencies.length + 1))
-  ];
+  return currencies[Math.floor(Math.random() * Math.floor(currencies.length))];
 };
 
 const randomValue = (currency) => {
@@ -163,7 +161,7 @@ const randomNumOfTransactions = () => {
     10,
   ];
   return numOfTransactions[
-    Math.floor(Math.random() * Math.floor(numOfTransactions.length + 1))
+    Math.floor(Math.random() * Math.floor(numOfTransactions.length))
   ];
 };
 
