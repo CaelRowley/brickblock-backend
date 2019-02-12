@@ -1,4 +1,40 @@
 /* eslint-disable */
+/* @flow weak */
+import '@babel/polyfill';
+import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
+import mongoose from 'mongoose';
+import path from 'path';
+import favicon from 'serve-favicon';
+import DataLoader from 'dataloader';
+
+import logger from '../config/winston';
+import addRouters from '../routes/app-router';
+import schema from '../services/graphql/schema/root-schema';
+import resolvers from '../services/graphql/resolvers/root-resolver';
+import models from '../services/graphql/models/root-model';
+import loaders from '../services/graphql/loaders/root-loader';
+
+const app = express();
+
+const server = new ApolloServer({
+  introspection: true,
+  typeDefs: schema,
+  resolvers,
+  context: async () => ({
+    models,
+    loaders: {
+      exchangeRate: new DataLoader(currencies => loaders.exchangeRate.exchangeBatchRates(currencies, models)),
+    },
+  }),
+});
+
+server.applyMiddleware({
+  app,
+  path: '/graphql',
+});
+
+addRouters(app);
 
 const port = process.env.PORT || 8000;
 
@@ -9,10 +45,34 @@ const connectDb = () =>
 
 connectDb().then(async () => {
   createICOs(1000);
+  createExchangeRates();
   app.listen(port, () => {
-    logger.debug(`Server be jammin' on http://localhost:${port}`);
+    logger.debug(`Server be jammin' on http://localhost:${port}/graphql`);
   });
 });
+
+const createExchangeRates = async () => {
+  const exchangeRateEth = new models.exchangeRate({
+    currency: 'ETH',
+    euro: 104.57,
+    dollar: 118.38,
+  });
+  await exchangeRateEth.save();
+
+  const exchangeRateBtc = new models.exchangeRate({
+    currency: 'BTC',
+    euro: 3198.64,
+    dollar: 3621.28,
+  });
+  await exchangeRateBtc.save();
+
+  const exchangeRateLtc = new models.exchangeRate({
+    currency: 'LTC',
+    euro: 38.77,
+    dollar: 43.89,
+  });
+  await exchangeRateLtc.save();
+};
 
 const createICOs = async (amount) => {
   for (let i = 0; i < amount; i++) {
