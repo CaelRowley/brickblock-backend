@@ -21,7 +21,8 @@
     "start:nodemon": "nodemon --exitcrash --exec babel-node src/app.js",
     "serve": "node build/src/app.js",
     "test": "LOG_LEVEL_CONSOLE=error LOG_LEVEL_FILE=error npm-run-all build test:mocha",
-    "test:mocha": "find ./build/test/* -name '*_test.js' | xargs mocha --require @babel/polyfill --exit -R spec"
+    "test:mocha": "find ./build/test/* -name '*_test.js' | xargs mocha --require @babel/polyfill --exit -R spec",
+    "mock:data": "babel-node src/mock-data/generate-data.js"
   },
   "repository": {
     "type": "git",

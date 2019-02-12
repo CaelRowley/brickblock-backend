@@ -6,7 +6,7 @@ export default gql`
     _id: String!
     address: String!
     currency: String!
-    value: Long!
+    value(exchange: String): Long!
     txid: String!
     date: Date
   }
