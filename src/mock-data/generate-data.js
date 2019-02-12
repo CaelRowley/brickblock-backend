@@ -113,7 +113,7 @@ const randomChars = (length) => {
 const randomCurrency = () => {
   const currencies = ['ETH', 'ETH', 'ETH', 'ETH', 'BTC', 'LTC', 'BTC'];
   return currencies[
-    Math.floor(Math.random() * Math.floor(currencies.length + 1))
+    Math.floor(Math.random() * Math.floor(currencies.length))
   ];
 };
 
@@ -163,7 +163,7 @@ const randomNumOfTransactions = () => {
     10,
   ];
   return numOfTransactions[
-    Math.floor(Math.random() * Math.floor(numOfTransactions.length + 1))
+    Math.floor(Math.random() * Math.floor(numOfTransactions.length))
   ];
 };
 
