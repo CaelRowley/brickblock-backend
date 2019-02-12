@@ -8,6 +8,18 @@ const smallUnitValue = {
 };
 
 export default {
+  ICO: {
+    value: async (parent, { exchange }, { loaders }) => {
+      if (exchange) {
+        const exchangeRate = await loaders.exchangeRate.load(parent.currency);
+        const newValue = (parent.value / smallUnitValue[parent.currency])
+          * exchangeRate[exchange];
+        return newValue;
+      }
+      return parent.value;
+    },
+  },
+
   Query: {
     ICOs: async (parent, { cursor, limit }, { models }) => {
       const cursorOptions = cursor

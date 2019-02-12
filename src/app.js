@@ -43,7 +43,7 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
-  logger.debug(`Server be jammin' on http://localhost:${port}`);
+  logger.debug(`Server be jammin' on http://localhost:${port}/graphql`);
 });
 
 export default app;
