@@ -71,6 +71,11 @@ Flow is used as a lightweight static type checker
 npm run flow
 ```
 
+
+## Logging
+For logging I used 'Winston'. This will output logs of a specified level to the console in a human readable format. Log files will also be generated for the logs in JSON format to allow them to easily be imported into other apps for data processing. The logger is also linked up with [sentry](https://sentry.io) which will read the logs and can provide useful information and data metrics about the logs.
+
+
 ## Docker
 There app is dockerized, and the Dockerfile builds the app in production mode for the automated deployments
 
