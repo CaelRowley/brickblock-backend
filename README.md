@@ -3,13 +3,11 @@ A basic NodeJS backend that's hosting mock ICO offering data on MongoDB using Gr
 
 
 ## Deployment
-The backend is deployed to two different environemtns. When a code is merged into the `development` branch, if it has passed the automated build tests and linting it will be deployed to the following dev environment:
+There are two deployed environments 
 
-https://brickblock-backend-develop.herokuapp.com/graphql
+For development: https://brickblock-backend-develop.herokuapp.com/graphql
 
-When the `development` branch is merged into `master` and all tests have passed it will be deployed to production:
-
-https://brickblock-backend.herokuapp.com/graphql
+For production: https://brickblock-backend.herokuapp.com/graphql
 ```
 WARNING
 As the application is deployed using the free heroku service they will sleep due to inactivity. 
@@ -46,7 +44,7 @@ Run the server locally as follows:
 npm start
 ```
 
-The project should now be avilable at `http://localhost:8000/graphql`
+The project should now be available at `http://localhost:8000/graphql`
 If the database contains no data you can run `npm run mock:data` to populate it with mock ICO data
 
 ## Project Scaffolding
@@ -79,6 +77,7 @@ There app is dockerized, and the Dockerfile builds the app in production mode fo
 ## GraphQL
 For a detailed look at what you can do with the graphql endpoint look at the schemas defined in: `src/services/graphql/schema`
 But here are some sample queries and mutations.
+
 ## Queries
 ```
 query {
@@ -131,3 +130,17 @@ mutation {
   }
 }
 ```
+
+
+## CI/CD
+[CircleCI](https://circleci.com/) is used for continuous integration and deployment.
+
+Developers are required to work locally on a new branch. 
+
+When making a merge request into the 'development' branch, CircleCI will trigger a 'build' job that will build the project, check linting, run flow, and run the tests. The merge request will be rejected if these checks fail.
+
+After merging a 'deployToDevelopment' job will trigger which will deploy the app to https://brickblock-backend-develop.herokuapp.com/graphql
+
+Only after the 'build' and 'deployToDevelopment' jobs have succsefully run will you be able to make a merge request into the 'master' branch which will trigger the final 'deployToProduction' job that will deploy the app to https://brickblock-backend.herokuapp.com/graphql
+
+[Heroku](https://www.heroku.com/) is used for the automated deployments. CircleCI builds the Docker container and then pushes it to the heroku Docker hub and then releases the application making it visible
