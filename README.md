@@ -34,8 +34,9 @@ The project should now be avilable at `http://localhost:8000/graphql`
 If the database contains no data you can run `npm run mock:data` to populate it with mock ICO data
 
 ## Project Scaffolding
-The `src` directory contains the source code for the server. It is built using Express and the Apollo Server middleware to connect GraphQL. This source code is transpiled to the `build` directory for deployment and testing.
-1. `npm run build` will transpile the `src` directory into `build`
+The `src` directory contains the source code for the server. It is built using Express and the Apollo Server middleware to connect GraphQL. The `test` directory contains the source code for the tests. It is built using Mocha. The file structure of this should mimic the structure of the `src` folder with unit tests written for each file.
+This source code is transpiled to the `build` directory for deployment and testing.
+1. `npm run build` will transpile the `src` and `test` directories into `build`
 2. `npm run clean` will delete the transpiled code
 
 ## Testing
@@ -45,9 +46,10 @@ npm test
 ```
 
 ## Linting
-The project is using ESLint as the linter. The configuration for this is stored in `.eslintrc.json`. You can use the following commands:
-1. `npm run lint` to run ESLint
-2. `npm run lint:fix` to run ESLint with the --fix prefix which will automatically fix certain linting errors
+The project is using ESLint and Prettier to lint and format the code. The configuration for this is stored in `.eslintrc.json` and `.prettierrc.json` You can use the following commands:
+1. `npm run pretty` to run Prettier
+2. `npm run lint` to run ESLint
+3. `npm run lint:fix` to run ESLint with the --fix prefix which will automatically fix certain linting errors
 
 ## Flow
 Flow is used as a lightweight static type checker
