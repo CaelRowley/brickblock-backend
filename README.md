@@ -12,7 +12,8 @@ When the `development` branch is merged into `master` and all tests have passed 
 https://brickblock-backend.herokuapp.com/graphql
 ```
 WARNING
-As the application is deployed using the free heroku service they will sleep due to inactivity. Please allow a short while for the app to build and serve if you get no response from the URL
+As the application is deployed using the free heroku service they will sleep due to inactivity. 
+Please allow a short while for the app to build and serve if you get no response from the URL.
 ```
 
 
