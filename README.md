@@ -7,7 +7,7 @@ A basic NodeJS backend that's hosting mock ICO offering data on MongoDB using Gr
 3. Alternatively to MongoDB you can use [Docker](https://docs.docker.com/install/)
 
 ## Setup
-1. Create `.env` and place in the appropriate config. A sample can be found in `.env.example`
+1. Create `.env` in the root of the project and fill in the appropriate config. A sample can be found in `.env.example`
 ```
 PORT=8000
 MONGODB_URI=mongodb://localhost:27017/sample
