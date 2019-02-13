@@ -27,7 +27,6 @@ TEST_API_URL=http://localhost:8000/graphql
 Run the server locally as follows:
 
 ```
-npm install
 npm start
 ```
 
