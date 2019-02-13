@@ -13,8 +13,7 @@ const connectDb = () =>
 connectDb().then(async () => {
   await createICOs(200);
   await createExchangeRates();
-  logger.info('Finished generating mock data')
-  
+  logger.info('Finished generating mock data');
 });
 
 const createExchangeRates = async () => {
@@ -127,16 +126,4 @@ const randomNumOfTransactions = () => {
   return numOfTransactions[
     Math.floor(Math.random() * Math.floor(numOfTransactions.length))
   ];
-};
-
-const randomICO = (address) => {
-  const ranCurrency = randomCurrency();
-  const ico = {
-    address: address,
-    currency: ranCurrency,
-    value: randomValue(ranCurrency),
-    txid: randomChars(64),
-    date: randomDate(new Date(2018, 2, 2), new Date()),
-  };
-  return ico;
 };
