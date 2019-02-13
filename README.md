@@ -1,6 +1,18 @@
 # brickblock-backend
 A basic NodeJS backend that's hosting mock ICO offering data on MongoDB using GraphQL to interact with the data.
 
+
+## Deployment
+The backend is deployed to two different environemtns. When a code is merged into the `development` branch, if it has passed the automated build tests and linting it will be deployed to the following dev environment:
+https://brickblock-backend-develop.herokuapp.com/graphql
+When the `development` branch is merged into `master` and all tests have passed it will be deployed to production:
+https://brickblock-backend.herokuapp.com/graphql
+```
+WARNING
+As the application is deployed using the free heroku service they will sleep due to inactivity. Please allow a short while for the app to build and serve if you get no response from the URL
+```
+
+
 ## Prerequisites
 1. [NodeJS](https://nodejs.org/)
 2. [MongoDB](https://docs.mongodb.com/manual/administration/install-community/)
